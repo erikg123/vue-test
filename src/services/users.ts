@@ -6,7 +6,7 @@ export const getUsers = new Promise<ResponseUser[]>((resolve, reject) => {
   try {
     setTimeout(() => {
       const userList: ResponseUser[] = faker.helpers.multiple(createRandomUser, {
-        count: 100
+        count: 10
       });
       resolve(userList);
     }, 2000);
@@ -22,7 +22,7 @@ const createRandomUser = (): ResponseUser => {
     email: faker.internet.email(),
     firstName: faker.person.firstName(),
     lastName: faker.person.lastName(),
-    birthdate: faker.date.birthdate(),
+    birthdate: faker.date.birthdate().toLocaleDateString(),
     registeredAt: faker.date.past()
   };
 };

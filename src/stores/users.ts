@@ -1,7 +1,8 @@
 import { defineStore } from 'pinia';
+import { faker } from '@faker-js/faker';
 
 import { getUsers } from '../services/users';
-import type { ResponseUser } from '../interfaces';
+import type { ResponseUser, User } from '../interfaces';
 
 interface State {
   data: ResponseUser[] | null;
@@ -28,6 +29,19 @@ export const useUsers = defineStore('users', {
       } finally {
         this.loading = false;
       }
+    },
+    addUser(userData: User) {
+      this.loading = false;
+      this.error = null;
+      const newUser: ResponseUser = {
+        ...userData,
+        userId: faker.string.uuid(),
+        registeredAt: new Date()
+      };
+      // add new user to list instead of posting to server
+      setTimeout(() => {
+        this.data?.push(newUser);
+      }, 2000);
     }
   }
 });

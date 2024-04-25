@@ -3,7 +3,7 @@ export interface User {
   email: string;
   firstName: string;
   lastName: string;
-  birthdate: Date;
+  birthdate: string;
 }
 
 export interface ResponseUser extends User {
