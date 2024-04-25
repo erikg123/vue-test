@@ -11,7 +11,7 @@ export const getUsers = new Promise<ResponseUser[]>((resolve, reject) => {
       resolve(userList);
     }, 2000);
   } catch (error) {
-    reject(error);
+    reject(new Error('Failed to fetch users'));
   }
 });
 
