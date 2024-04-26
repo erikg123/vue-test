@@ -42,6 +42,14 @@ export const useUsers = defineStore('users', {
       setTimeout(() => {
         this.data?.push(newUser);
       }, 2000);
+    },
+    updateUser(userData: User, userId: string) {
+      this.loading = false;
+      this.error = null;
+      // update user with matching userId
+      this.$patch({
+        data: this.data?.map((user) => (user.userId === userId ? { ...user, ...userData } : user))
+      });
     }
   }
 });
